@@ -1,6 +1,6 @@
 package com.bootmybatisbase.api.sample.service;
 
-import com.bootmybatisbase.api.sample.dao.SampleDao;
+import com.bootmybatisbase.api.sample.mapper.SampleMapper;
 import com.bootmybatisbase.api.sample.vo.SampleVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public class SampleService {
 
-    private final SampleDao sampleDao;
+    private final SampleMapper sampleDao;
 
     /**
      * 샘플 단건 조회
