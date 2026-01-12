@@ -1,0 +1,15 @@
+spring:
+
+  # db setting
+  datasource:
+    url: jdbc:postgresql://localhost:5432/testdb
+    driver-class-name: org.postgresql.Driver
+    username: root
+    password: 1234
+
+
+mybatis:
+  mapper-locations: classpath:/mapper/**/*.xml
+  type-aliases-package: com.bootmybatisbase
+  configuration:
+    map-underscore-to-camel-case: true
