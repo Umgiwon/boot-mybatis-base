@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootmybatisbase.api.sample.dao.SampleDao">
+
+    <!-- 샘플 단건 조회 -->
+    <select id="getSample" resultType="com.bootmybatisbase.api.sample.vo.SampleVO">
+        SELECT 1
+    </select>
+
+</mapper>
