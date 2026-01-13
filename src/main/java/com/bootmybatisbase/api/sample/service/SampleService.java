@@ -2,9 +2,13 @@ package com.bootmybatisbase.api.sample.service;
 
 import com.bootmybatisbase.api.sample.mapper.SampleMapper;
 import com.bootmybatisbase.api.sample.vo.SampleVO;
+import com.bootmybatisbase.global.domain.dto.PageResponse;
+import com.bootmybatisbase.global.domain.dto.Pagination;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -12,6 +16,28 @@ import org.springframework.transaction.annotation.Transactional;
 public class SampleService {
 
     private final SampleMapper sampleDao;
+
+    /**
+     * 샘플 목록 조회
+     * @param page 페이지 번호
+     * @param size 페이지 데이터 사이즈
+     * @return 페이지 정보 + 샘플 목록
+     */
+    public PageResponse<SampleVO> getSampleList(int page, int size) {
+
+        // 페이징 조회정보 세팅
+        int pageNumber = Math.max(page, 1);
+        int offset = (pageNumber - 1) * size;
+
+        // 목록 조회
+        List<SampleVO> sampleList = sampleDao.getSampleList(offset, size);
+        long totalCount = sampleDao.countSampleList();
+
+        // 페이징 정보 세팅
+        Pagination pagination = Pagination.of(pageNumber, size, sampleList.size(), totalCount);
+
+        return new PageResponse<>(sampleList, pagination);
+    }
 
     /**
      * 샘플 단건 조회
