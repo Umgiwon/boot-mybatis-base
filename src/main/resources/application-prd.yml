@@ -3,7 +3,7 @@ spring:
   # db setting
 #  datasource:
 #    url: jdbc:postgresql://localhost:5432/testdb
-#    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+#    driver-class-name: org.postgresql.Driver
 #    username: root
 #    password: 1234
 
@@ -22,15 +22,11 @@ custom:
     master:
       jdbc-url: jdbc:postgresql://192.168.219.171:5433/postgres
       driver-class-name: org.postgresql.Driver
-#      jdbc-url: jdbc:p6spy:postgresql://192.168.219.171:5433/postgres
-#      driver-class-name: com.p6spy.engine.spy.P6SpyDriver
       username: miro
       password: miroit0621!
     slave:
       jdbc-url: jdbc:postgresql://192.168.219.171:5433/postgres
       driver-class-name: org.postgresql.Driver
-#      jdbc-url: jdbc:p6spy:postgresql://192.168.219.171:5433/postgres
-#      driver-class-name: com.p6spy.engine.spy.P6SpyDriver
       username: miro
       password: miroit0621!
 
@@ -38,12 +34,12 @@ custom:
 # query logging setting
 logging:
   level:
-    root: INFO
+    root: WARN
     org.mybatis: DEBUG
     org.mybatis.spring: DEBUG
     com.bootmybatisbase: DEBUG
     com.zaxxer.hikari.HikariDataSource: DEBUG
-    com.p6spy: INFO
+    com.p6spy: WARN
 
 
 # swagger setting
@@ -57,7 +53,7 @@ springdoc:
     doc-expansion: none # 카테고리가 접힌상태로 로딩
     persist-authorization: true # 브라우저를 새로고침 하더라도 인증정보 유지
   packages-to-scan: com.bootmybatisbase
-  title: boot-mybatis-base API 문서 (local)
+  title: boot-mybatis-base API 문서 (prd)
   version: 1.0.0
 
 
@@ -65,7 +61,7 @@ springdoc:
 jwt:
   issuer: bootmybatisbase
   access-token-secret-key: bootmybatisbase_access_secret_bootmybatisbase_access_secret
-  access-token-expiration: 2592000000 # 1개월
+  access-token-expiration: 3600000 # 1시간
   refresh-token-secret-key: bootmybatisbase_refresh_secret_bootmybatisbase_refresh_secret
   refresh-token-expiration: 2592000000 # 1개월
 
