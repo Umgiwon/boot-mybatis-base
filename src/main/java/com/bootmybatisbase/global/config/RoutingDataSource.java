@@ -13,10 +13,14 @@ public class RoutingDataSource extends AbstractRoutingDataSource {
     @Override
     protected Object determineCurrentLookupKey() {
 
-        boolean txActive = TransactionSynchronizationManager.isActualTransactionActive();
         boolean readOnly = TransactionSynchronizationManager.isCurrentTransactionReadOnly();
 
-        log.info("TX active: {}, readOnly: {}", txActive, readOnly);
+//        log.info("[Routing] readOnly={}", readOnly);
+
+        log.info("[Routing] txActive={}, readOnly={}",
+                TransactionSynchronizationManager.isActualTransactionActive(),
+                TransactionSynchronizationManager.isCurrentTransactionReadOnly()
+        );
 
         return readOnly ? "slave" : "master";
     }
