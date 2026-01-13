@@ -1,12 +1,3 @@
-spring:
-
-  # db setting
-#  datasource:
-#    url: jdbc:postgresql://localhost:5432/testdb
-#    driver-class-name: org.postgresql.Driver
-#    username: root
-#    password: 1234
-
 
 mybatis:
   mapper-locations: classpath:/mapper/**/*.xml
@@ -40,6 +31,11 @@ logging:
     com.bootmybatisbase: DEBUG
     com.zaxxer.hikari.HikariDataSource: DEBUG
     com.p6spy: WARN
+
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: false # 운영에서는 로그를 남기지 않음
 
 
 # swagger setting
