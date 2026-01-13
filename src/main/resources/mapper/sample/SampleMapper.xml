@@ -12,7 +12,7 @@
              , A.CREATED_DATE
              , A.UPDATED_USER
              , A.UPDATED_DATE
-        FROM TB_SAMPLE A
+        FROM initial.TB_SAMPLE A
         ORDER BY A.CREATED_USER DESC
             LIMIT #{limit} OFFSET #{offset}
     </select>
@@ -20,7 +20,7 @@
     <!-- 샘플 전체목록 카운트 조회 -->
     <select id="countSampleList" resultType="long">
         SELECT COUNT(*)
-          FROM SAMPLE
+          FROM initial.TB_SAMPLE
     </select>
 
     <!-- 샘플 단건 조회 -->
@@ -32,7 +32,7 @@
              , A.CREATED_DATE
              , A.UPDATED_USER
              , A.UPDATED_DATE
-          FROM TB_SAMPLE A
+          FROM initial.TB_SAMPLE A
          WHERE A.SAMPLE_SN = #{sampleSm}
     </select>
 
