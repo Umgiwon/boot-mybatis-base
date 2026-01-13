@@ -28,7 +28,7 @@
 //@RequiredArgsConstructor
 //public class SecurityConfig {
 //
-//    private final TokenAuthenticationFilter tokenAuthenticationFilter;
+//    private final TokenAuthenticationFilter tokenAuthenticationFilter;;
 //    private final AuthenticationEntryPoint jwtAuthenticationEntryPoint;
 //    private final AccessDeniedHandler jwtAccessDeniedHandler;
 //

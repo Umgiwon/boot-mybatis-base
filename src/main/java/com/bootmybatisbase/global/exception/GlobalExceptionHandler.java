@@ -14,7 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.security.access.AccessDeniedException;
+//import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -311,28 +311,28 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE).body(exceptionMsg);
     }
 
-    /**
-     * AccessDeniedException 발생 시 처리 핸들러
-     * 사용자 권한이 부족하여 접근이 거부된 경우
-     *
-     * @param request
-     * @param ex
-     * @return
-     */
-    @ExceptionHandler(AccessDeniedException.class)
-    public ResponseEntity<ExceptionMsg> handleAccessDeniedException(HttpServletRequest request, AccessDeniedException ex) {
-        log.error("[AccessDeniedException] {}", ex.getMessage(), ex);
-
-        ExceptionMsg exceptionMsg = ExceptionMsg.builder()
-                .success(false)
-                .path(request.getRequestURI())
-                .timestamp(LocalDateTime.now())
-                .errorCode(ApiReturnCode.FORBIDDEN_ERROR.getCode())
-                .errorMessage(ApiReturnCode.FORBIDDEN_ERROR.getMessage())
-                .build();
-
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(exceptionMsg);
-    }
+//    /**
+//     * AccessDeniedException 발생 시 처리 핸들러
+//     * 사용자 권한이 부족하여 접근이 거부된 경우
+//     *
+//     * @param request
+//     * @param ex
+//     * @return
+//     */
+//    @ExceptionHandler(AccessDeniedException.class)
+//    public ResponseEntity<ExceptionMsg> handleAccessDeniedException(HttpServletRequest request, AccessDeniedException ex) {
+//        log.error("[AccessDeniedException] {}", ex.getMessage(), ex);
+//
+//        ExceptionMsg exceptionMsg = ExceptionMsg.builder()
+//                .success(false)
+//                .path(request.getRequestURI())
+//                .timestamp(LocalDateTime.now())
+//                .errorCode(ApiReturnCode.FORBIDDEN_ERROR.getCode())
+//                .errorMessage(ApiReturnCode.FORBIDDEN_ERROR.getMessage())
+//                .build();
+//
+//        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(exceptionMsg);
+//    }
 
     /**
      * HttpMediaTypeNotSupportedException 발생 시 처리 핸들러

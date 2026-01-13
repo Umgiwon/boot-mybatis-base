@@ -25,7 +25,7 @@
 //@RequiredArgsConstructor
 //public class TokenProvider {
 //
-//    private static final String BEARER_PREFIX = "Bearer ";
+//    private static final String BEARER_PREFIX = "Bearer ";;
 //    private final TokenProperties tokenProperties;
 //
 //    private Key accessKey;
