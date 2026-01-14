@@ -3,6 +3,7 @@ package com.bootmybatisbase.api.sample.controller;
 import com.bootmybatisbase.api.sample.service.SampleService;
 import com.bootmybatisbase.api.sample.service.SampleServiceTx;
 import com.bootmybatisbase.api.sample.vo.SampleVO;
+import com.bootmybatisbase.global.annotation.common.CustomApiLogger;
 import com.bootmybatisbase.global.domain.dto.BaseResponse;
 import com.bootmybatisbase.global.domain.dto.BaseResponseFactory;
 import io.swagger.v3.oas.annotations.Operation;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Tag(name = "Sample API", description = "샘플 API")
+@CustomApiLogger
 @RestController
 @RequiredArgsConstructor
 @Validated
