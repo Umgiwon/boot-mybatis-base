@@ -1,4 +1,4 @@
-package com.bootmybatisbase.global.domain.dto;
+package com.bootmybatisbase.global.domain;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;

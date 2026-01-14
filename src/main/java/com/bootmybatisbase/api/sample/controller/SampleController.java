@@ -4,8 +4,8 @@ import com.bootmybatisbase.api.sample.service.SampleService;
 import com.bootmybatisbase.api.sample.service.SampleServiceTx;
 import com.bootmybatisbase.api.sample.vo.SampleVO;
 import com.bootmybatisbase.global.annotation.common.CustomApiLogger;
-import com.bootmybatisbase.global.domain.dto.BaseResponse;
-import com.bootmybatisbase.global.domain.dto.BaseResponseFactory;
+import com.bootmybatisbase.global.domain.BaseResponse;
+import com.bootmybatisbase.global.domain.BaseResponseFactory;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +24,9 @@ public class SampleController {
 
     private final SampleService sampleService;      // 조회 전용
     private final SampleServiceTx sampleServiceTx;  // 생성, 수정, 삭제 전용
+
+
+
 
     @Operation(summary = "샘플 목록 조회", description = "샘플 목록 페이징 처리")
     @GetMapping("")

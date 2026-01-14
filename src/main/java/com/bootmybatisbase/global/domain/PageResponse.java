@@ -1,4 +1,4 @@
-package com.bootmybatisbase.global.domain.dto;
+package com.bootmybatisbase.global.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

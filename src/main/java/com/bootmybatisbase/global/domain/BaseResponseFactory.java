@@ -1,4 +1,4 @@
-package com.bootmybatisbase.global.domain.dto;
+package com.bootmybatisbase.global.domain;
 
 import com.bootmybatisbase.global.constant.ResponseMessageConst;
 import com.bootmybatisbase.global.enums.common.SuccessHttpMethodCodeType;
