@@ -12,9 +12,10 @@
              , A.CREATED_DATE
              , A.UPDATED_USER
              , A.UPDATED_DATE
-        FROM initial.TB_SAMPLE A
-        ORDER BY A.CREATED_USER DESC
-            LIMIT #{limit} OFFSET #{offset}
+          FROM initial.TB_SAMPLE A
+         ORDER BY A.CREATED_USER DESC
+         LIMIT #{limit}
+        OFFSET #{offset}
     </select>
 
     <!-- 샘플 전체목록 카운트 조회 -->
