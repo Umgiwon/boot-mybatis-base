@@ -10,7 +10,7 @@ import java.util.List;
 public interface SampleMapper {
 
     /**
-     * Sample 저장전 중복체크 (여러 컬럼 중복체크일 경우 예시)
+     * Sample 저장전 중복체크
      * @param reqDto 요청 dto
      * @return 중복 여부
      */
@@ -29,7 +29,7 @@ public interface SampleMapper {
      * @param limit 끝점
      * @return 샘플 목록
      */
-    List<SampleVO> getSampleList(
+    List<SampleResDto> getSampleList(
             @Param("offset") int offset,
             @Param("limit") int limit
     );
@@ -44,5 +44,5 @@ public interface SampleMapper {
      * @param sampleSn 샘플 순번
      * @return 샘플
      */
-    SampleVO getSample(@Param("sampleSn") Long sampleSn);
+    SampleResDto getSample(@Param("sampleSn") Long sampleSn);
 }

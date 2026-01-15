@@ -45,7 +45,7 @@
     </select>
 
     <!-- Sample 목록 조회 -->
-    <select id="getSampleList" resultType="com.bootmybatisbase.api.sample.vo.SampleVO">
+    <select id="getSampleList" resultType="com.bootmybatisbase.api.sample.dto.response.SampleResDto">
         SELECT A.SAMPLE_SN
              , A.TITLE
              , A.CONTENT
@@ -66,7 +66,7 @@
     </select>
 
     <!-- Sample 단건 조회 -->
-    <select id="getSample" resultType="com.bootmybatisbase.api.sample.vo.SampleVO">
+    <select id="getSample" resultType="com.bootmybatisbase.api.sample.dto.response.SampleResDto">
         SELECT A.SAMPLE_SN
              , A.TITLE
              , A.CONTENT

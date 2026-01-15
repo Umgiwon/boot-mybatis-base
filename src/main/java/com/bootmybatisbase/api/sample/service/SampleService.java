@@ -1,5 +1,6 @@
 package com.bootmybatisbase.api.sample.service;
 
+import com.bootmybatisbase.api.sample.dto.response.SampleResDto;
 import com.bootmybatisbase.api.sample.mapper.SampleMapper;
 import com.bootmybatisbase.api.sample.vo.SampleVO;
 import com.bootmybatisbase.global.domain.PageResponse;
@@ -23,14 +24,14 @@ public class SampleService {
      * @param size 페이지 데이터 사이즈
      * @return 페이지 정보 + 샘플 목록
      */
-    public PageResponse<SampleVO> getSampleList(int page, int size) {
+    public PageResponse<SampleResDto> getSampleList(int page, int size) {
 
         // 페이징 조회정보 세팅
         int pageNumber = Math.max(page, 1);
         int offset = (pageNumber - 1) * size;
 
         // 목록 조회
-        List<SampleVO> sampleList = sampleDao.getSampleList(offset, size);
+        List<SampleResDto> sampleList = sampleDao.getSampleList(offset, size);
         long totalCount = sampleDao.countSampleList();
 
         // 페이징 정보 세팅
@@ -44,7 +45,7 @@ public class SampleService {
      * @param sampleSn 샘플 순번
      * @return 샘플
      */
-    public SampleVO getSample(Long sampleSn) {
+    public SampleResDto getSample(Long sampleSn) {
         return sampleDao.getSample(sampleSn);
     }
 }
