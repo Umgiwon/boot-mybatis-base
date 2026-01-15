@@ -14,7 +14,7 @@ import org.hibernate.validator.constraints.Length;
 @NoArgsConstructor
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true) // json 데이터를 java 객체로 역직렬화 할 때 매핑되지 않은 필드를 무시
-public class SampleSaveReqDto extends BaseDto {
+public class SampleInsertReqDto extends BaseDto {
 
     @NotBlank(message = "제목은 필수입니다")
     @Length(max = 30, message = "제목은 30글자 이하로 입력해야 합니다.")
@@ -29,7 +29,7 @@ public class SampleSaveReqDto extends BaseDto {
     /**
      * 저장시 중복여부 응답 dto
      */
-    @Getter
+    @Data
     public static class DuplicateCheckResult {
         private Boolean titleExists; // 제목 중복여부
         private Boolean contentExists; // 기타 중복여부 예시

@@ -1,8 +1,7 @@
 package com.bootmybatisbase.api.sample.mapper;
 
-import com.bootmybatisbase.api.sample.dto.request.SampleSaveReqDto;
+import com.bootmybatisbase.api.sample.dto.request.SampleInsertReqDto;
 import com.bootmybatisbase.api.sample.dto.response.SampleResDto;
-import com.bootmybatisbase.api.sample.vo.SampleVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -14,14 +13,14 @@ public interface SampleMapper {
      * @param reqDto 요청 dto
      * @return 중복 여부
      */
-    SampleSaveReqDto.DuplicateCheckResult existsSample(SampleSaveReqDto reqDto);
+    SampleInsertReqDto.DuplicateCheckResult existsSample(SampleInsertReqDto reqDto);
 
     /**
      * Sample 저장
      * @param reqDto 요청 dto
      * @return 저장 완료된 Sample dto
      */
-    SampleResDto insertSample(SampleSaveReqDto reqDto);
+    SampleResDto insertSample(SampleInsertReqDto reqDto);
 
     /**
      * 샘플 목록 조회

@@ -3,24 +3,43 @@
 
 <mapper namespace="com.bootmybatisbase.api.sample.mapper.SampleMapper">
 
+    <!-- Sample 중복체크용 resultMap -->
+    <resultMap id="duplicateCheckMap"
+               type="com.bootmybatisbase.api.sample.dto.request.SampleInsertReqDto$DuplicateCheckResult">
+        <result column="TITLE_EXISTS" property="titleExists"/>
+        <result column="CONTENT_EXISTS" property="contentExists"/>
+    </resultMap>
+
+    <!-- Sample 조회용 resultMap -->
+    <resultMap id="sampleResMap"
+               type="com.bootmybatisbase.api.sample.dto.response.SampleResDto">
+        <result column="SAMPLE_SN" property="sampleSn"/>
+        <result column="TITLE" property="title"/>
+        <result column="CONTENT" property="content"/>
+        <result column="CREATED_USER" property="createdUser"/>
+        <result column="CREATED_DATE" property="createdDate"/>
+        <result column="UPDATED_USER" property="updatedUser"/>
+        <result column="UPDATED_DATE" property="updatedDate"/>
+    </resultMap>
+
     <!-- Sample 중복체크 (Inner Class 표기법 : OuterClass$InnerClass) -->
     <select id="existsSample"
-            parameterType="com.bootmybatisbase.api.sample.dto.request.SampleSaveReqDto"
-            resultType="com.bootmybatisbase.api.sample.dto.request.SampleSaveReqDto$DuplicateCheckResult">
+            parameterType="com.bootmybatisbase.api.sample.dto.request.SampleInsertReqDto"
+            resultMap="duplicateCheckMap">
         SELECT
             EXISTS (
-                SELECT 1 FROM initial.TB_SAMPLE A WHERE A.TITLE = #{reqDto.title}
+                SELECT 1 FROM initial.TB_SAMPLE A WHERE A.TITLE = #{title}
             ) AS TITLE_EXISTS
             , EXISTS (
-                SELECT 1 FROM initial.TB_SAMPLE A WHERE A.CONTENT = #{reqDto.content}
+                SELECT 1 FROM initial.TB_SAMPLE A WHERE A.CONTENT = #{content}
             ) AS CONTENT_EXISTS
     </select>
 
     <!-- Sample 저장 후 저장 데이터 반환 -->
     <select id="insertSample"
-            parameterType="com.bootmybatisbase.api.sample.dto.request.SampleSaveReqDto"
-            resultType="com.bootmybatisbase.api.sample.dto.response.SampleResDto">
-        INSERT INTO TB_SAMPLE (
+            parameterType="com.bootmybatisbase.api.sample.dto.request.SampleInsertReqDto"
+            resultMap="sampleResMap">
+        INSERT INTO initial.TB_SAMPLE (
             TITLE
             , CONTENT
             , CREATED_USER
@@ -28,15 +47,16 @@
             , UPDATED_USER
             , UPDATED_DATE
         ) VALUES (
-            #{reqDto.title}
-            , #{reqDto.content}
-            , #{reqDto.createdUser}
-            , #{reqDto.createdDate}
-            , #{reqDto.updatedUser}
-            , #{reqDto.updatedDate}
+            #{title}
+            , #{content}
+            , #{createdUser}
+            , #{createdDate}
+            , #{updatedUser}
+            , #{updatedDate}
         )
         RETURNING
-            TITLE
+            SAMPLE_SN
+            , TITLE
             , CONTENT
             , CREATED_USER
             , CREATED_DATE
@@ -45,7 +65,7 @@
     </select>
 
     <!-- Sample 목록 조회 -->
-    <select id="getSampleList" resultType="com.bootmybatisbase.api.sample.dto.response.SampleResDto">
+    <select id="getSampleList" resultMap="sampleResMap">
         SELECT A.SAMPLE_SN
              , A.TITLE
              , A.CONTENT
@@ -66,7 +86,7 @@
     </select>
 
     <!-- Sample 단건 조회 -->
-    <select id="getSample" resultType="com.bootmybatisbase.api.sample.dto.response.SampleResDto">
+    <select id="getSample" resultMap="sampleResMap">
         SELECT A.SAMPLE_SN
              , A.TITLE
              , A.CONTENT

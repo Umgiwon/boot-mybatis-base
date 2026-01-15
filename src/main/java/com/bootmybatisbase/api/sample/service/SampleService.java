@@ -2,7 +2,6 @@ package com.bootmybatisbase.api.sample.service;
 
 import com.bootmybatisbase.api.sample.dto.response.SampleResDto;
 import com.bootmybatisbase.api.sample.mapper.SampleMapper;
-import com.bootmybatisbase.api.sample.vo.SampleVO;
 import com.bootmybatisbase.global.domain.PageResponse;
 import com.bootmybatisbase.global.domain.Pagination;
 import lombok.RequiredArgsConstructor;

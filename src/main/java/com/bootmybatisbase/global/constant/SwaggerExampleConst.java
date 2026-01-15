@@ -19,26 +19,11 @@ public class SwaggerExampleConst {
             """;
 
     /* ==================== Sample ==================== */
-    public static final String SAMPLE_SAVE_EXAMPLE_1 = """
-                [
-                    {
-                        "title": "title11",
-                        "content": "content11"
-                    }
-                ]
-            """;
-
-    public static final String SAMPLE_SAVE_LIST_EXAMPLE_1 = """
-                [
-                    {
-                        "title": "title11",
-                        "content": "content11"
-                    },
-                    {
-                        "title": "title12",
-                        "content": "content12"
-                    }
-                ]
+    public static final String SAMPLE_INSERT_EXAMPLE_1 = """
+                {
+                    "title": "title11",
+                    "content": "content11"
+                }
             """;
 
     public static final String SAMPLE_UPDATE_EXAMPLE_1 = """

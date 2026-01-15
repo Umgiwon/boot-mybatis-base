@@ -1,10 +1,10 @@
 package com.bootmybatisbase.global.domain.dto;
 
-import lombok.Getter;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 
-@Getter
+@Data
 public class BaseDto {
     private String createdUser; // 등록자
     private LocalDateTime createdDate; // 등록일

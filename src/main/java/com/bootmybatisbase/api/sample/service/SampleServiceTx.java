@@ -1,6 +1,6 @@
 package com.bootmybatisbase.api.sample.service;
 
-import com.bootmybatisbase.api.sample.dto.request.SampleSaveReqDto;
+import com.bootmybatisbase.api.sample.dto.request.SampleInsertReqDto;
 import com.bootmybatisbase.api.sample.dto.response.SampleResDto;
 import com.bootmybatisbase.api.sample.mapper.SampleMapper;
 import com.bootmybatisbase.global.exception.DataConflictException;
@@ -20,7 +20,7 @@ public class SampleServiceTx {
      * @param reqDto 요청 dto
      * @return 저장 완료된 Sample dto
      */
-    public SampleResDto insertSample(SampleSaveReqDto reqDto) {
+    public SampleResDto insertSample(SampleInsertReqDto reqDto) {
 
         // 저장 전 data validate
         validateSample(reqDto);
@@ -34,10 +34,10 @@ public class SampleServiceTx {
      * Sample 저장 전 validate
      * @param reqDto 요청 dto
      */
-    private void validateSample(SampleSaveReqDto reqDto) {
+    private void validateSample(SampleInsertReqDto reqDto) {
 
         // 중복 여부 조회
-        SampleSaveReqDto.DuplicateCheckResult result = sampleDao.existsSample(reqDto);
+        SampleInsertReqDto.DuplicateCheckResult result = sampleDao.existsSample(reqDto);
 
         // 제목 중복 체크
         if (Boolean.TRUE.equals(result.getTitleExists())) {

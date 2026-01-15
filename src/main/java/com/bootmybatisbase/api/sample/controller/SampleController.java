@@ -1,19 +1,24 @@
 package com.bootmybatisbase.api.sample.controller;
 
+import com.bootmybatisbase.api.sample.dto.request.SampleInsertReqDto;
 import com.bootmybatisbase.api.sample.dto.response.SampleResDto;
 import com.bootmybatisbase.api.sample.service.SampleService;
 import com.bootmybatisbase.api.sample.service.SampleServiceTx;
-import com.bootmybatisbase.api.sample.vo.SampleVO;
 import com.bootmybatisbase.global.annotation.common.CustomApiLogger;
 import com.bootmybatisbase.global.domain.BaseResponse;
 import com.bootmybatisbase.global.domain.BaseResponseFactory;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static com.bootmybatisbase.global.constant.SwaggerExampleConst.SAMPLE_INSERT_EXAMPLE_1;
 
 @Tag(name = "Sample API", description = "샘플 API")
 @CustomApiLogger
@@ -26,10 +31,19 @@ public class SampleController {
     private final SampleService sampleService;      // 조회 전용
     private final SampleServiceTx sampleServiceTx;  // 생성, 수정, 삭제 전용
 
-
-//    public BaseResponse<SampleResDto> saveSample(SampleVO sampleVO) {
-//
-//    }
+    @Operation(summary = "샘플 저장", description = "샘플 단건 저장")
+    @PostMapping("")
+    public BaseResponse<SampleResDto> insertSample(
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    description = "json",
+                    content = @Content(examples = {
+                            @ExampleObject(name = "저장 예제1", value = SAMPLE_INSERT_EXAMPLE_1),
+                    })
+            )
+            @RequestBody @Valid SampleInsertReqDto reqDto
+    ) {
+        return BaseResponseFactory.success(sampleServiceTx.insertSample(reqDto));
+    }
 
     @Operation(summary = "샘플 목록 조회", description = "샘플 목록 페이징 처리")
     @GetMapping("")
