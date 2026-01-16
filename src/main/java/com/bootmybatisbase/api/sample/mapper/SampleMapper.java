@@ -1,7 +1,7 @@
 package com.bootmybatisbase.api.sample.mapper;
 
 import com.bootmybatisbase.api.sample.dto.request.SampleInsertReqDto;
-import com.bootmybatisbase.api.sample.dto.response.SampleResDto;
+import com.bootmybatisbase.api.sample.vo.SampleVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -17,31 +17,31 @@ public interface SampleMapper {
 
     /**
      * Sample 저장
-     * @param reqDto 요청 dto
-     * @return 저장 완료된 Sample dto
+     * @param vo 저장할 vo
+     * @return 저장 완료된 vo
      */
-    SampleResDto insertSample(SampleInsertReqDto reqDto);
+    SampleVO insertSample(SampleVO vo);
 
     /**
-     * 샘플 목록 조회
+     * Sample 목록 조회
      * @param offset 시작점
      * @param limit 끝점
-     * @return 샘플 목록
+     * @return 조회된 vo 목록
      */
-    List<SampleResDto> getSampleList(
+    List<SampleVO> getSampleList(
             @Param("offset") int offset,
             @Param("limit") int limit
     );
 
     /**
-     * 샘플 전체목록 카운트
+     * Sample 전체목록 카운트
      */
     long countSampleList();
 
     /**
-     * 샘플 상세 조회
+     * Sample 상세 조회
      * @param sampleSn 샘플 순번
      * @return 샘플
      */
-    SampleResDto getSample(@Param("sampleSn") Long sampleSn);
+    SampleVO getSample(@Param("sampleSn") Long sampleSn);
 }

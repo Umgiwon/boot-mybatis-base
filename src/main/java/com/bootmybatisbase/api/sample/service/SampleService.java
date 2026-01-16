@@ -2,9 +2,13 @@ package com.bootmybatisbase.api.sample.service;
 
 import com.bootmybatisbase.api.sample.dto.response.SampleResDto;
 import com.bootmybatisbase.api.sample.mapper.SampleMapper;
+import com.bootmybatisbase.api.sample.vo.SampleVO;
 import com.bootmybatisbase.global.domain.PageResponse;
 import com.bootmybatisbase.global.domain.Pagination;
+import com.bootmybatisbase.global.enums.common.ApiReturnCode;
+import com.bootmybatisbase.global.exception.BusinessException;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,13 +34,16 @@ public class SampleService {
         int offset = (pageNumber - 1) * size;
 
         // 목록 조회
-        List<SampleResDto> sampleList = sampleDao.getSampleList(offset, size);
+        List<SampleVO> sampleVoList = sampleDao.getSampleList(offset, size);
         long totalCount = sampleDao.countSampleList();
 
-        // 페이징 정보 세팅
-        Pagination pagination = Pagination.of(pageNumber, size, sampleList.size(), totalCount);
+        // vo -> dto 변환
+        List<SampleResDto> sampleResDtoList = sampleVoList.stream().map(SampleResDto::from).toList();
 
-        return new PageResponse<>(sampleList, pagination);
+        // 페이징 정보 세팅
+        Pagination pagination = Pagination.of(pageNumber, size, sampleResDtoList.size(), totalCount);
+
+        return new PageResponse<>(sampleResDtoList, pagination);
     }
 
     /**
@@ -45,6 +52,13 @@ public class SampleService {
      * @return 샘플
      */
     public SampleResDto getSample(Long sampleSn) {
-        return sampleDao.getSample(sampleSn);
+
+        SampleVO result = sampleDao.getSample(sampleSn);
+
+        if (ObjectUtils.isEmpty(result)) {
+            throw new BusinessException(ApiReturnCode.NO_DATA_ERROR);
+        }
+
+        return SampleResDto.from(result);
     }
 }

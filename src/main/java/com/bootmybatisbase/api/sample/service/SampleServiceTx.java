@@ -3,6 +3,7 @@ package com.bootmybatisbase.api.sample.service;
 import com.bootmybatisbase.api.sample.dto.request.SampleInsertReqDto;
 import com.bootmybatisbase.api.sample.dto.response.SampleResDto;
 import com.bootmybatisbase.api.sample.mapper.SampleMapper;
+import com.bootmybatisbase.api.sample.vo.SampleVO;
 import com.bootmybatisbase.global.exception.DataConflictException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,9 +26,19 @@ public class SampleServiceTx {
         // 저장 전 data validate
         validateSample(reqDto);
 
-        reqDto.insertInfoSet("SYSTEM"); // 저장정보 set (임시로 SYSTEM)
+        // dto -> vo 변환
+        SampleVO vo = SampleVO.builder()
+                .title(reqDto.getTitle())
+                .content(reqDto.getContent())
+                // TODO 로그인 정보 세팅 필요
+                .createdUser("TEST")
+                .updatedUser("TEST")
+                .build();
 
-        return sampleDao.insertSample(reqDto);
+        // 저장 및 결과 반환
+        SampleVO result = sampleDao.insertSample(vo);
+
+        return SampleResDto.from(result);
     }
 
     /**

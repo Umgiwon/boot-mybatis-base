@@ -11,8 +11,8 @@
     </resultMap>
 
     <!-- Sample 조회용 resultMap -->
-    <resultMap id="sampleResMap"
-               type="com.bootmybatisbase.api.sample.dto.response.SampleResDto">
+    <resultMap id="sampleVOMap"
+               type="com.bootmybatisbase.api.sample.vo.SampleVO">
         <result column="SAMPLE_SN" property="sampleSn"/>
         <result column="TITLE" property="title"/>
         <result column="CONTENT" property="content"/>
@@ -37,8 +37,8 @@
 
     <!-- Sample 저장 후 저장 데이터 반환 -->
     <select id="insertSample"
-            parameterType="com.bootmybatisbase.api.sample.dto.request.SampleInsertReqDto"
-            resultMap="sampleResMap">
+            parameterType="com.bootmybatisbase.api.sample.vo.SampleVO"
+            resultMap="sampleVOMap">
         INSERT INTO initial.TB_SAMPLE (
             TITLE
             , CONTENT
@@ -50,9 +50,9 @@
             #{title}
             , #{content}
             , #{createdUser}
-            , #{createdDate}
+            , NOW()
             , #{updatedUser}
-            , #{updatedDate}
+            , NOW()
         )
         RETURNING
             SAMPLE_SN
@@ -65,7 +65,7 @@
     </select>
 
     <!-- Sample 목록 조회 -->
-    <select id="getSampleList" resultMap="sampleResMap">
+    <select id="getSampleList" resultMap="sampleVOMap">
         SELECT A.SAMPLE_SN
              , A.TITLE
              , A.CONTENT
@@ -74,7 +74,7 @@
              , A.UPDATED_USER
              , A.UPDATED_DATE
           FROM initial.TB_SAMPLE A
-         ORDER BY A.CREATED_USER DESC
+         ORDER BY A.CREATED_DATE DESC
          LIMIT #{limit}
         OFFSET #{offset}
     </select>
@@ -86,7 +86,7 @@
     </select>
 
     <!-- Sample 단건 조회 -->
-    <select id="getSample" resultMap="sampleResMap">
+    <select id="getSample" resultMap="sampleVOMap">
         SELECT A.SAMPLE_SN
              , A.TITLE
              , A.CONTENT

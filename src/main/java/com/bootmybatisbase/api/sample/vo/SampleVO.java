@@ -2,13 +2,11 @@ package com.bootmybatisbase.api.sample.vo;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Builder
 @Getter
-@Setter
 public class SampleVO {
 
     private Long sampleSn; // 샘플 순번
