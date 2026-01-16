@@ -98,4 +98,21 @@
          WHERE A.SAMPLE_SN = #{sampleSm}
     </select>
 
+    <!-- Sample 수정 -->
+    <update id="updateSample"
+            parameterType="com.bootmybatisbase.api.sample.vo.SampleVO">
+        UPDATE initial.TB_SAMPLE
+        <set>
+            <if test="title != null">
+                TITLE = #{title},
+            </if>
+            <if test="content != null">
+                CONTENT = #{content},
+            </if>
+            UPDATED_USER = #{updatedUser},
+            UPDATED_DATE = NOW()
+        </set>
+         WHERE SAMPLE_SN = #{sampleSn}
+    </update>
+
 </mapper>

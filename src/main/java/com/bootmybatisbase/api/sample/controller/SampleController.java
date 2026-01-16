@@ -1,6 +1,7 @@
 package com.bootmybatisbase.api.sample.controller;
 
 import com.bootmybatisbase.api.sample.dto.request.SampleInsertReqDto;
+import com.bootmybatisbase.api.sample.dto.request.SampleUpdateReqDto;
 import com.bootmybatisbase.api.sample.dto.response.SampleResDto;
 import com.bootmybatisbase.api.sample.service.SampleService;
 import com.bootmybatisbase.api.sample.service.SampleServiceTx;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 import static com.bootmybatisbase.global.constant.SwaggerExampleConst.SAMPLE_INSERT_EXAMPLE_1;
+import static com.bootmybatisbase.global.constant.SwaggerExampleConst.SAMPLE_UPDATE_EXAMPLE_1;
 
 @Tag(name = "Sample API", description = "샘플 API")
 @CustomApiLogger
@@ -58,5 +60,20 @@ public class SampleController {
     @GetMapping("/{sampleSn}")
     public BaseResponse<SampleResDto> getSample(@PathVariable Long sampleSn) {
         return BaseResponseFactory.success(sampleService.getSample(sampleSn));
+    }
+
+    @Operation(summary = "샘플 수정", description = "제목, 내용 수정 가능")
+    @PatchMapping("/{sampleSn}")
+    public BaseResponse<Integer> updateSample(
+            @PathVariable Long sampleSn,
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    description = "json",
+                    content = @Content(examples = {
+                            @ExampleObject(name = "수정 예제1", value = SAMPLE_UPDATE_EXAMPLE_1)
+                    })
+            )
+            @RequestBody @Valid SampleUpdateReqDto reqDto
+    ) {
+        return BaseResponseFactory.success(sampleServiceTx.updateSample(sampleSn, reqDto));
     }
 }

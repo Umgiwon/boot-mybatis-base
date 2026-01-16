@@ -44,4 +44,12 @@ public interface SampleMapper {
      * @return 샘플
      */
     SampleVO getSample(@Param("sampleSn") Long sampleSn);
+
+
+    /**
+     * Sample 수정
+     * @param vo 수정할 vo
+     * @return 결과값
+     */
+    int updateSample(SampleVO vo);
 }

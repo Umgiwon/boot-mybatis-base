@@ -28,47 +28,8 @@ public class SwaggerExampleConst {
 
     public static final String SAMPLE_UPDATE_EXAMPLE_1 = """
                 {
-                    "title": "수정된 제목1",
-                    "content": "수정된 내용1"
-                }
-            """;
-
-    /* ==================== Car ==================== */
-    public static final String CAR_SAVE_EXAMPLE_1 = """
-            
-                [
-                    {
-                        "category": "준중형 SUV",
-                        "manufacturer": "현대",
-                        "modelName": "아이오닉",
-                        "productionYear": "2024"
-                    }
-                ]
-            """;
-
-    public static final String CAR_SAVE_LIST_EXAMPLE_1 = """
-            
-                [
-                    {
-                        "category": "준중형 SUV",
-                        "manufacturer": "현대",
-                        "modelName": "아이오닉",
-                        "productionYear": "2024"
-                    },
-                    {
-                        "category": "대형 RV",
-                        "manufacturer": "현대",
-                        "modelName": "스타리아",
-                        "productionYear": "2022"
-                    }
-                ]
-            """;
-
-    public static final String CAR_UPDATE_EXAMPLE_1 = """
-                {
-                    "category": "미니 SUV",
-                    "rentalYn": "Y",
-                    "rentalDescription": "수리로 인한 대여 중단"
+                    "title": "수정할 제목1",
+                    "content": "수정할 내용1"
                 }
             """;
 }

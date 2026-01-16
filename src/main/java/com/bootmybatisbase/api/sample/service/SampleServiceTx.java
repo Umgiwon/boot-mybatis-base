@@ -1,9 +1,12 @@
 package com.bootmybatisbase.api.sample.service;
 
 import com.bootmybatisbase.api.sample.dto.request.SampleInsertReqDto;
+import com.bootmybatisbase.api.sample.dto.request.SampleUpdateReqDto;
 import com.bootmybatisbase.api.sample.dto.response.SampleResDto;
 import com.bootmybatisbase.api.sample.mapper.SampleMapper;
 import com.bootmybatisbase.api.sample.vo.SampleVO;
+import com.bootmybatisbase.global.enums.common.ApiReturnCode;
+import com.bootmybatisbase.global.exception.BusinessException;
 import com.bootmybatisbase.global.exception.DataConflictException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -61,5 +64,32 @@ public class SampleServiceTx {
         }
     }
 
+    /**
+     * Sample 수정
+     * @param sampleSn 수정할 샘플 순번
+     * @param reqDto 수정요청 dto
+     * @return 결과값
+     */
+    public int updateSample(Long sampleSn, SampleUpdateReqDto reqDto) {
+
+        // dto -> vo 변환
+        SampleVO vo = SampleVO.builder()
+                .sampleSn(sampleSn)
+                .title(reqDto.getTitle())
+                .content(reqDto.getContent())
+                // TODO 로그인 정보 세팅 필요
+                .updatedUser("TEST")
+                .build();
+
+        // 수정
+        int updateCnt = sampleDao.updateSample(vo);
+
+        // 수정건수 검증
+        if (updateCnt == 0) {
+            throw new BusinessException(ApiReturnCode.NO_DATA_ERROR);
+        }
+
+        return updateCnt;
+    }
 
 }
